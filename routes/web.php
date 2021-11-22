@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ConfirmEmailController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('confirm/{id}/{token}', [ConfirmEmailController::class,'confirm']);
+Route::get('profil', [UsersController::class,'edit'])->name('profil');
+Route::post('profil',[UsersController::class,'update']);
 
 #Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

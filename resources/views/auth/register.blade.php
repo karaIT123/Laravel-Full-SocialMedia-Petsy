@@ -15,7 +15,7 @@
 
                         <div class="form-group row">
 
-                            {{ Form::label(null, 'Nom d\'utilisateur', ['class' => 'col-md-4 col-form-label text-md-right']) }}
+                            {{ Form::label(null, 'Nom d\'utilisateur', ['class' => 'col-md-4 col-form-label text-md-end']) }}
 
                             <div class="col-md-6">
 
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group row">
-                            {{ Form::label(null, 'E-mail', ['class' => 'col-md-4 col-form-label text-md-right']) }}
+                            {{ Form::label(null, 'E-mail', ['class' => 'col-md-4 col-form-label text-md-end']) }}
 
 
                             <div class="col-md-6">
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="form-group row">
-                            {{ Form::label(null, 'Mot de passe', ['class' => 'col-md-4 col-form-label text-md-right']) }}
+                            {{ Form::label(null, 'Mot de passe', ['class' => 'col-md-4 col-form-label text-md-end']) }}
 
                             <div class="col-md-6">
                                 {!! Form::password("password", ['class' => 'form-control']) !!}
@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="form-group row">
-                            {{ Form::label(null, 'Confirmez le mot de passe', ['class' => 'col-md-4 col-form-label text-md-right']) }}
+                            {{ Form::label(null, 'Confirmez le mot de passe', ['class' => 'col-md-4 col-form-label text-md-end']) }}
 
                             <div class="col-md-6">
                                 {!! Form::password("password_confirmation", ['class' => 'form-control']) !!}
