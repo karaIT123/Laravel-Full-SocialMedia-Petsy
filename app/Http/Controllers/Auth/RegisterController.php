@@ -5,8 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -22,6 +27,8 @@ class RegisterController extends Controller
     |
     */
 
+    private $mailer;
+
     use RegistersUsers;
 
     /**
@@ -36,8 +43,9 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Mailer $mailer)
     {
+        $this->mailer = $mailer;
         $this->middleware('guest');
     }
 
@@ -50,10 +58,21 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'alpha_num','unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+    }
+
+    protected function randomString($length = 10): string
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
     /**
@@ -64,10 +83,45 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $token = $this->randomString(60);
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'confirmation_token' => $token,
             'password' => Hash::make($data['password']),
         ]);
+
+        $this->mailer->send('email.register',compact('token','user'), function ($message) use ($user){
+            $message->to($user->email)->subject("Confirmation de compte");
+        });
+
+        return $user;
+
+
+    }
+
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        #event(new Registered($user = $this->create($request->all())));
+        $user = $this->create($request->all());
+
+        #$this->guard()->login($user);
+
+        return redirect('/')->with('success','Votre compte a bien été créé, un email de validation vous a été aussi envoyé.
+            Veuillez confirmé cet email pour finaliser la creation');
+
+        /*
+        if ($response = $this->registered($request, $user)) {
+            return $response->with('success','Votre compte a bien été crée, un email de validation vous a été aussi envoyé.
+            Veuillez confirmé cet email pour finaliser la creation');
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
+        */
     }
 }
