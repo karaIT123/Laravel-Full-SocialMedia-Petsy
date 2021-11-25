@@ -13,10 +13,10 @@
                         @csrf
 
                         <div class="form-group row">
-                            {{ Form::label(null, 'E-mail', ['class' => 'col-md-4 col-form-label text-md-right']) }}
+                            {{ Form::label(null, 'Nom d\'utilidateur ou E-mail', ['class' => 'col-md-4 col-form-label text-md-right']) }}
 
                             <div class="col-md-6">
-                                {!! Form::email("email", null, ['class' => 'form-control', 'autofocus']) !!}
+                                {!! Form::text("email", null, ['class' => 'form-control', 'autofocus']) !!}
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
