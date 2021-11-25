@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ConfirmEmailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +19,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('confirm/{id}/{token}', [ConfirmEmailController::class,'confirm']);
 
 #Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
