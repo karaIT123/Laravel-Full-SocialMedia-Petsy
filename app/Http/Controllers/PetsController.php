@@ -17,7 +17,7 @@ class PetsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('owner',['except' => ['index']]);
+        $this->middleware('owner',['except' => ['index','store','create']]);
     }
 
     /**
@@ -80,9 +80,9 @@ class PetsController extends Controller
      * @param  int  $id
      * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($pet)
     {
-        $pet = Pet::findOrFail($id);
+        $pet = Pet::findOrFail($pet->id);
         return view('pets.edit', compact('pet'));
     }
 
@@ -93,9 +93,9 @@ class PetsController extends Controller
      * @param int $id
      * @return Application|Redirector|RedirectResponse
      */
-    public function update(PetsRequest $request, Guard $auth, $id)
+    public function update(PetsRequest $request, Guard $auth, $pet)
     {
-        $pet = Pet::findOrFail($id);
+        $pet = Pet::findOrFail($pet->id);
         $data = $request->all();
         $data['user_id'] = $auth->user()->id;
         $pet->update($data);
@@ -108,9 +108,9 @@ class PetsController extends Controller
      * @param  int  $id
      * @return Application|RedirectResponse|\Illuminate\Http\Response|Redirector
      */
-    public function destroy($id)
+    public function destroy($pet)
     {
-        $pet = Pet::findOrFail($id);
+        $pet = Pet::findOrFail($pet->id);
         $pet->delete();
         return redirect(route('pets.index'))->with('success','L\'animal a été supprimée avec succès');
     }
