@@ -9,6 +9,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\App;
 
 class PetsController extends Controller
 {
@@ -16,6 +17,7 @@ class PetsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('owner',['except' => ['index']]);
     }
 
     /**
@@ -29,6 +31,11 @@ class PetsController extends Controller
         $pets = $auth->user()->pets;
         $pets->load('species');
         return view('pets.index', compact('pets'));
+    }
+
+    public function getResource($id){
+        #dd(func_get_args());
+        return Pet::findOrFail($id);
     }
 
     /**

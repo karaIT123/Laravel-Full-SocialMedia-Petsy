@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ConfirmEmailController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PetsController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\UsersController;
@@ -17,9 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('home');
-});
+});*/
+
+Route::get('/',[HomeController::class,'index']);
 
 Auth::routes();
 
