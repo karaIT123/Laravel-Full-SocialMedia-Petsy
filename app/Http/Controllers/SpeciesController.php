@@ -38,7 +38,7 @@ class SpeciesController extends Controller
     public function store(SpeciesRequest $request)
     {
         Species::create($request->only('name','slug'));
-        return redirect(route('species.index'))->with('success','L\'espèce a été ajouté avec succès');
+        return redirect(route('species.index'))->with('success','L\'espèce a été ajoutée avec succès');
     }
 
     /**
@@ -75,7 +75,7 @@ class SpeciesController extends Controller
     {
         $species = Species::findOrFail($id);
         $species->update($request->only('name','slug'));
-        return redirect(route('species.index'))->with('success','L\'espèce a été modifié avec succès');
+        return redirect(route('species.index'))->with('success','L\'espèce a été modifiée avec succès');
     }
 
     /**
@@ -86,6 +86,10 @@ class SpeciesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $species = Species::findOrFail($id);
+        #$species->delete();
+        dd($id);
+        return redirect(route('species.index'))->with('success','L\'espèce a été supprimée avec succès');
+
     }
 }

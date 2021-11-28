@@ -25,7 +25,10 @@
                     <td>{{ $s->slug }}</td>
                     <td>
                         <a href="{{ action('App\Http\Controllers\SpeciesController@edit',$s) }}" class="btn btn-primary">Editer</a>
-                        <a href="{{ action('App\Http\Controllers\SpeciesController@destroy',$s) }}" class="btn btn-danger">Supprimer</a>
+                        <a href="{{ action('App\Http\Controllers\SpeciesController@destroy',$s) }}" class="btn btn-danger"
+                           data-method="delete"
+                           data-confirm="return confirm('Voulez-vous vraiment supprimer cette espèce')"
+                        >Supprimer</a>
                     </td>
                 </tr>
             @endforeach
