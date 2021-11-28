@@ -1,4 +1,5 @@
 @if(count($errors) > 0)
+   <!-- #dd($errors->get('name')[0]) -->
     <div class="alert alert-danger">
         <strong>ATTENTION !!!</strong> Certain champs n'ont pas été rempli correctement.
         <ul>
