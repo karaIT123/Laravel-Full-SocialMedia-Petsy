@@ -29,6 +29,10 @@ class User extends Authenticatable
         'avatar'
     ];
 
+    public function pets(){
+        return $this->hasMany('App\Models\Pet');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -54,7 +58,7 @@ class User extends Authenticatable
         #dd("image/avatars/{$this->id}.jpg");
         if($avatar)
         {
-            return "image/avatars/{$this->id}.jpg";
+            return "image/avatars/users/{$this->id}.jpg";
         }
         else
 
@@ -64,7 +68,12 @@ class User extends Authenticatable
     public function setAvatarAttribute(UploadedFile $avatar){
         if(is_object($avatar) && $avatar->isValid())
         {
-            Image::make($avatar)->fit(150,150)->save(public_path() . "/image/avatars/{$this->id}.jpg");
+
+            $dir = public_path() . "/image/avatars/users/";
+            if(!file_exists($dir)){
+                mkdir($dir,0777,true);
+            }
+            Image::make($avatar)->fit(150,150)->save( "$dir{$this->id}.jpg");
             #$avatar->move(public_path() . "/image/avatars","{$this->id}.{$avatar->getClientOriginalExtension()}");
 
             $this->attributes["avatar"] = true;

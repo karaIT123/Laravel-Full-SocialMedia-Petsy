@@ -81,4 +81,7 @@
 
     laravel.initialize();
 
+
+
+
 })();

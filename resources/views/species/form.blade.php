@@ -10,7 +10,7 @@
         </div>-->
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ $action == "store" ? __('Ajouter une espèces') :  __('Editer une espèces') }}</div>
+                <div class="card-header">{{ $action == "store" ? __('Ajouter une espèces') :  __('Editer l\'espèce ')  }} <b>{{  $species->name }}</b></div>
 
                 <div class="card-body">
 

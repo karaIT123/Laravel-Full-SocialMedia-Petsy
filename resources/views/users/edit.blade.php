@@ -1,12 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.sidebar')
 
-@section('content')
+@section('main')
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-end">
+        <div class="col-md-12">
+        <!--<div class="col-md-8">-->
             <div class="card">
                 <div class="card-header">Mon compte</div>
-
                 <div class="card-body">
                     {!! Form::model($user, ['files' => true]) !!}
 
@@ -108,3 +108,8 @@
     </div>
 
 @endsection
+
+@section('sidebar')
+    @include('users.sidebar',['tab' => 'profile'])
+@endsection
+

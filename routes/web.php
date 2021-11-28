@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ConfirmEmailController;
+use App\Http\Controllers\PetsController;
 use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -28,5 +29,7 @@ Route::get('profil', [UsersController::class,'edit'])->name('profil');
 Route::post('profil',[UsersController::class,'update']);
 
 Route::resource('species',SpeciesController::class);
+
+Route::resource('pets', PetsController::class);
 
 #Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

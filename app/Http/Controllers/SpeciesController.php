@@ -82,13 +82,13 @@ class SpeciesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
         $species = Species::findOrFail($id);
-        #$species->delete();
-        dd($id);
+        $species->delete();
+        #dd($id);
         return redirect(route('species.index'))->with('success','L\'espèce a été supprimée avec succès');
 
     }
