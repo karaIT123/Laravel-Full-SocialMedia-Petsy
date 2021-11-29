@@ -41,9 +41,11 @@
                        <li class="nav-item">
                            <a href="{{ url('/') }}" class="nav-link active">Home</a>
                        </li>
+                        @if(Auth::user() && Auth::user()->role == 'admin')
                         <li class="nav-item">
                             <a href="{{ url('species') }}" class="nav-link active">Espèces</a>
                         </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -69,7 +71,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a href="{{ route('profil') }}" class="dropdown-item">Mon profil</a>
-
+                                    <a href="{{ route('pets.index') }}" class="dropdown-item">Mes animaux</a>
+                                    <hr>
                                     <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
