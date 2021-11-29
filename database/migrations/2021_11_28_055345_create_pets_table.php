@@ -19,7 +19,7 @@ class CreatePetsTable extends Migration
             $table->integer('species_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
             $table->date('birthday');
-            $table->boolean('avatar')->default(false);
+            #$table->boolean('avatar')->default(false);
             $table->string('gender',1);
             $table->timestamps();
         });

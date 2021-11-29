@@ -8,7 +8,7 @@
                 <div class="col-md-6">-</div>
             </div>
         </div>-->
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ $action == "store" ? __('Ajouter un animal') :  __('Editer l\'animal ')  }} <b>{{  $pet->name }}</b></div>
 
@@ -20,7 +20,7 @@
                     'url' => action("App\Http\Controllers\PetsController@$action",$pet),
                     'method' => $action == "store" ? "POST" : "PUT"]) !!}
 
-                    @if($pet->avatar)
+                    @if($pet->id)
                         <div class="form-group row">
                             {{ Form::label(null, 'Profil', ['class' => 'col-md-4 col-form-label text-md-end fs-1']) }}
 

@@ -24,7 +24,7 @@
             @foreach($pets as $pet)
                 <tr>
                     <!--<th scope="row"> $pet->id }}</th>-->
-                    <td><img src="{{ url($pet->avatar) }}" class="img-responsive w-50" alt="Avatar"></td>
+                    <td><img src="{{ url($pet->avatar) }}?{{time()}}" class="rounded-circle" width="50" alt="Avatar"></td>
                     <td>{{ $pet->name }}</td>
                     <td>{{ $pet->gender }}</td>
                     <td>{{ $pet->age > 1 ? " $pet->age ans" : " $pet->age an"}} </td>
@@ -33,7 +33,7 @@
                         <a href="{{ route('pets.edit',$pet) }}" class="btn btn-primary">Editer</a>
                         <a href="{{ route('pets.destroy',$pet) }}" class="btn btn-danger"
                            data-method="delete"
-                           data-confirm="return confirm('Voulez-vous vraiment supprimer cette espèce')"
+                           data-confirm="return confirm('Voulez-vous vraiment supprimer cet animal')"
                         >Supprimer</a>
                     </td>
                 </tr>

@@ -57,9 +57,13 @@ class PetsController extends Controller
      */
     public function store(PetsRequest $request, Guard $auth)
     {
+        #dd($request->all());
         $data = $request->all();
         $data['user_id'] = $auth->user()->id;
         Pet::create($data);
+        #$pet  = Pet::create($data);
+
+        #$pet->update($data);
         return redirect(route('pets.index'))->with('success','L\'animal a été ajoutée avec succès');
     }
 
@@ -82,7 +86,7 @@ class PetsController extends Controller
      */
     public function edit($pet)
     {
-        $pet = Pet::findOrFail($pet->id);
+        #$pet = Pet::findOrFail($pet->id);
         return view('pets.edit', compact('pet'));
     }
 
@@ -95,7 +99,8 @@ class PetsController extends Controller
      */
     public function update(PetsRequest $request, Guard $auth, $pet)
     {
-        $pet = Pet::findOrFail($pet->id);
+        #dd($request->all());
+        #$pet = Pet::findOrFail($pet->id);
         $data = $request->all();
         $data['user_id'] = $auth->user()->id;
         $pet->update($data);
@@ -110,7 +115,7 @@ class PetsController extends Controller
      */
     public function destroy($pet)
     {
-        $pet = Pet::findOrFail($pet->id);
+        #$pet = Pet::findOrFail($pet->id);
         $pet->delete();
         return redirect(route('pets.index'))->with('success','L\'animal a été supprimée avec succès');
     }

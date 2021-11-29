@@ -1,9 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.sidebar')
 
-@section('content')
-
-    <!--<h1>Ajouter une espèce</h1>-->
+@section('main')
 
     @include('pets.form', ['action' => 'store'])
+
+@stop
+
+@section('sidebar')
+
+    @include('pets.sidebar',['tab' => 'profile'])
 
 @stop

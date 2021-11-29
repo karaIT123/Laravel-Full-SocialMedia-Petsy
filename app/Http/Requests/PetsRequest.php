@@ -23,14 +23,20 @@ class PetsRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required|min:3',
             'gender' => 'required|in:F,M',
-            #'avatar' => 'required|image',
-            'avatar' => 'image',
+            'avatar' => 'required|image',
+            #'avatar' => 'image',
             'species_id' => 'required|exists:species,id',
             'birthday' => 'date',
 
         ];
+
+        if($this->method() == "PUT"){
+            $rules['avatar'] = 'image';
+        }
+
+        return $rules;
     }
 }

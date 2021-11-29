@@ -1,8 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.sidebar')
 
-@section('content')
-
+@section('main')
 
     @include('pets.form', ['action' => 'update'])
+
+@stop
+
+@section('sidebar')
+
+    @include('pets.sidebar',['tab' => 'pet'])
 
 @stop
