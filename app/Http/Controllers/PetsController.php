@@ -34,6 +34,7 @@ class PetsController extends Controller
     }
 
     public function getResource($id){
+        #dd($id);
         #dd(func_get_args());
         return Pet::findOrFail($id);
     }

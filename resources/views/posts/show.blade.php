@@ -8,6 +8,12 @@
             <img src="{{ url($post->image('large')) }}" alt="" class="img-responsive w-100">
         </p>
 
+        <p class="text-end">
+            @if(Auth::user() && Auth::user()->id == $post->user_id)
+                <a href="{{ route('posts.edit',$post) }}" class="btn btn-primary">Editer</a>
+            @endif
+        </p>
+
         <div class="row">
             <div class="col-md-8">
                 <h2>Commentaires</h2>

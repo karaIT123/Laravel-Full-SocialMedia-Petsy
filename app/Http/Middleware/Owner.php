@@ -28,18 +28,21 @@ class Owner
      */
     public function handle(Request $request, Closure $next)
     {
+
         $uses = $request->route()->getAction();
         $controller_name = explode('@', $uses['uses'])[0];
         $controller = App($controller_name);
 
-
+        #dd($request->route()->parameters());
         #$reflectionMethod = new \ReflectionMethod($controller_name,'getResource');
         #$resource = $reflectionMethod->invokeArgs($controller,$request->route()->parameters());
         $resource = $controller->getResource($request->route()->parameters());
+        #dd($resource);
         #dd($resource->all()[0]->guarded[0]);
         #dd($resource->all()[0]->getAttribute('user_id'));
 
         $id = $resource->all()[0]->getAttribute('user_id');
+
 
         if($id != $this->auth->user()->id)
         {
@@ -51,6 +54,7 @@ class Owner
             }
         }
         #dd($request->route()->parameterNames()[0]);
+        #dd($resource->all()[0]);
         #dd($resource->all()[0]->getAttribute('user_id'));
         $request->route()->setParameter($request->route()->parameterNames()[0], $resource->all()[0]);
         return $next($request);

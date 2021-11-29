@@ -12,6 +12,14 @@ class PostsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('owner', ['except' => ['index','store','create','show']]);
+    }
+
+    public function getResource($id)
+    {
+        #dd($id);
+        #$id = $post['post'];
+        return Post::findOrFail($id);
     }
 
     public function index(){
@@ -35,6 +43,14 @@ class PostsController extends Controller
         $data['user_id'] = Auth::user()->id;
         $post = Post::create($data);
         return redirect(route('posts.show',$post))->with('success',"L'image a été ajoutée avec succès");
+    }
 
+    public function edit($post){
+        return view('posts.edit', compact('post'));
+    }
+
+    public function update($post, PostRequest $request){
+        $post->update($request->only(['name','content','image','pets_id']));
+        return redirect(route('posts.show',$post))->with('success',"La publication a été ajoutée avec succès");
     }
 }

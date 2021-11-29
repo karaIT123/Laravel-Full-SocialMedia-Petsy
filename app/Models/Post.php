@@ -28,6 +28,9 @@ class Post extends Model
 
     public function setImageAttribute(UploadedFile $image){
         if(is_object($image) && $image->isValid()) {
+            if(!empty($this->image)){
+                unlink($this->getImageDir() . "/{$this->id}.{$this->image}");
+            }
             static::saved(function($instance) use ($image){
                 $image = $image->move($instance->getImageDir() ,   "{$instance->id}.{$image->getClientOriginalExtension()}");
                 Image::make($image)->fit(360)->save($instance->getImageDir() . "/" . $instance->id . '_thumb.jpg');
@@ -41,9 +44,14 @@ class Post extends Model
         static::saved(function($instance) use ($pets_id){
             $instance->pets()->sync($pets_id);
         });
-
-
     }
 
+    public function getPetsIdAttribute($pets_id){
+        if($this->id){
+            #dd($this->pets()->id);
+            return $this->pets->pluck('id');
+        }
+        return [];
+    }
 
 }

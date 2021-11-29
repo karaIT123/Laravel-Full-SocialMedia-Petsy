@@ -7,9 +7,11 @@
 
     <div class="row">
         @foreach($posts as $post)
-            <div class="col-md-6">
-                <h4>{{ $post->name }}</h4>
-                <img src="{{ $post->image('thumb') }}" alt="">
+            <div class="col-md-6 mb-5">
+                <a class="text-decoration-none" href="{{ route('posts.show',$post) }}">
+                    <h4>{{ $post->name }}</h4>
+                    <img src="{{ $post->image('thumb') }}" alt="">
+                </a>
             </div>
         @endforeach
     </div>
