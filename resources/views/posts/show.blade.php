@@ -1,8 +1,8 @@
 @extends('layouts.app')
     @section('content')
-        <div class="page-header">
-            <h1>{{$post->name}}</h1>
-        </div>
+
+        <h1>{{$post->name}}</h1>
+
         <hr>
         <p class="text-center">
             <img src="{{ url($post->image('large')) }}" alt="" class="img-responsive w-100">

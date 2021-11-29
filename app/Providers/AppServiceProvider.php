@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Validator::resolver(function ($translator, $data, $rules, $message){
             return new \App\Http\Validator\validator($translator, $data, $rules, $message);
         });
+
+        Paginator::useBootstrap();
     }
 }
