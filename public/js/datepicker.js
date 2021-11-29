@@ -473,7 +473,4 @@
 
 }( window.jQuery );
 
-$('.form-datepicker').datepicker({
-    format: 'dd/mm/yyyy',
-    weekStart: 1
-})
+

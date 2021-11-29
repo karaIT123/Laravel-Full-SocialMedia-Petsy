@@ -12,6 +12,8 @@
 */
 
 return [
+    'dimension' => 'La taille de votre image doit depasser (:widthx:height) pixels',
+    'petsowner' => 'Vous ne pouvez vous attribué que vos animaux',
     'accepted'             => 'Le champ :attribute doit être accepté.',
     'accepted_if'          => 'Le champ :attribute doit être accepté quand :other a la valeur :value.',
     'active_url'           => 'Le champ :attribute n\'est pas une URL valide.',

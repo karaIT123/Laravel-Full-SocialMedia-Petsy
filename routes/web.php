@@ -36,6 +36,7 @@ Route::resource('species',SpeciesController::class);
 
 Route::resource('pets', PetsController::class);
 
-Route::resource('posts', PostsController::class,['only' => ['store','create']]);
+Route::resource('posts', PostsController::class);
 
+#Route::resource('posts', PostsController::class,['only' => ['store','create','show']]);
 #Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

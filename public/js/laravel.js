@@ -81,7 +81,12 @@
 
     laravel.initialize();
 
+    $('.form-datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        weekStart: 1
+    })
 
+    $('select[multiple]').select2();
 
 
 })();

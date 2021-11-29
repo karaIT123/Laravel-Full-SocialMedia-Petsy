@@ -37,8 +37,8 @@
 
                     <div class="form-group row">
                         {{ Form::label(null, 'Animaux', ['class' => 'col-md-4 col-form-label text-md-end']) }}
-                        <div class="col-md-6">
-                            {!! Form::select("species_id",Auth::user()->pets()->pluck('name','id'), null, ['class' => 'form-control']) !!}
+                        <div class="col-md-6 mt-3">
+                            {!! Form::select("pets_id[]",Auth::user()->pets()->pluck('name','id'), null, ['class' => 'form-control','multiple']) !!}
                         </div>
                     </div>
 
@@ -48,7 +48,6 @@
                             {!! Form::textarea("content", null, ['class' => 'form-control']) !!}
                         </div>
                     </div>
-
 
 
                     <div class="form-group row mb-0">

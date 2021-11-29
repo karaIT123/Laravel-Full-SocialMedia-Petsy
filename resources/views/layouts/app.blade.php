@@ -11,8 +11,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/laravel.js') }}" defer></script>
     <script src="{{ asset('js/datepicker.js') }}" defer></script>
+    <script src="{{ asset('js/select2.js') }}" defer></script>
+    <script src="{{ asset('js/laravel.js') }}" defer></script>
 
 
     <!-- Fonts -->
@@ -22,6 +23,7 @@
     <!-- Styles -->
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/datepicker.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
 
 </head>
 <body>
