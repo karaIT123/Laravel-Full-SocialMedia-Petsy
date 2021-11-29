@@ -110,6 +110,6 @@
 @endsection
 
 @section('sidebar')
-    @include('users.sidebar',['tab' => 'profile'])
+    @include('sidebar.sidebar',['tab' => 'profile'])
 @endsection
 

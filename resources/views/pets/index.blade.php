@@ -43,5 +43,5 @@
 @stop
 
 @section('sidebar')
-    @include('users.sidebar',['tab' => 'pet'])
+    @include('sidebar.sidebar',['tab' => 'pet'])
 @endsection

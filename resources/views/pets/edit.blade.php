@@ -8,6 +8,6 @@
 
 @section('sidebar')
 
-    @include('pets.sidebar',['tab' => 'pet'])
+    @include('sidebar.sidebar',['tab' => 'pet'])
 
 @stop
